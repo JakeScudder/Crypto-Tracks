@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+import logo from "./mountain.png";
 import "./App.css";
 
 import CryptoList from "./components/CryptoList";
