@@ -1,7 +1,10 @@
-import logo from "./mountain.png";
+import logo from "./tree.svg";
 import "./App.css";
+import "./yeti.bootstrap.min.css";
 
 import CryptoList from "./components/CryptoList";
+import NavBar from "./components/NavBar";
+import TrainBorder from "./components/TrainBorder";
 
 function App() {
   return (
@@ -9,6 +12,8 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
+      <NavBar />
+      <TrainBorder />
       <CryptoList />
     </div>
   );
