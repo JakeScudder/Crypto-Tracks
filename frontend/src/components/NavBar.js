@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { searchCoin } from "../actions/coinActions";
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
   const [keyword, setKeyword] = useState("");
@@ -38,10 +38,10 @@ const NavBar = () => {
           Home
         </NavLink>
         <a className="nav-links" href="https://github.com/JakeScudder">
-          <i class="fab fa-github"></i>
+          <i className="fab fa-github"></i>
         </a>
         <NavLink className="nav-links" to="#">
-          <i class="fab fa-instagram"></i>
+          <i className="fab fa-instagram"></i>
         </NavLink>
       </Nav>
       <Form onSubmit={submitHandler} inline>
