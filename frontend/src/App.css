@@ -15,7 +15,7 @@ html {
 }
 
 .App-logo {
-  height: 15vmin;
+  height: 15vh;
   pointer-events: none;
   left: 0;
   position: absolute;
@@ -34,7 +34,7 @@ html {
     rgba(79, 165, 198, 1) 60%,
     rgba(43, 115, 201, 1) 100%
   );
-  min-height: 15vh;
+  height: 15vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,41 +47,48 @@ html {
   color: #61dafb;
 }
 
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
+/*******NavBar */
+.App-title.navbar-brand {
+  font-size: 1.5rem;
+}
 
-/*******IMAGES */
+.nav-links {
+  font-size: 1.5rem;
+  color: white;
+  line-height: 2;
+  margin-right: 10px;
+}
+
+/*******Images */
 
 .traintracks {
   height: 80px;
   margin-right: -10px;
 }
 
+#traintrack-border {
+  overflow: hidden;
+}
+
 /*******HOME // CoinList */
 
+#crypto-list-div {
+  overflow: scroll;
+}
 .coin-table {
   margin-left: auto;
   margin-right: auto;
   width: 85%;
+  overflow: scroll;
 }
 
 .coin-container {
   border-bottom: 4px solid #6329a2;
-  width: 90%;
+  width: 95%;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 1rem;
   font-weight: 600;
-}
-
-.coin-list-name {
-  width: 8rem;
 }
 
 .coin-container h3 {
@@ -95,5 +102,43 @@ html {
 .coin-image {
   width: 100%;
   height: 40px;
+  width: 40px;
   object-fit: cover;
+}
+
+@media screen and (max-width: 900px) {
+  .coin-table th {
+    font-size: 10px;
+  }
+  .coin-container td {
+    font-size: 10px;
+    padding-right: 10px;
+  }
+
+  .image-thead {
+    width: 40px;
+    height: 40px;
+  }
+
+  .App-header {
+    height: 14vh;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .traintracks.four {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .search-input {
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .traintracks.three {
+    display: none;
+  }
 }

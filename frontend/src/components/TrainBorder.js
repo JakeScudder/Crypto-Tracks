@@ -6,8 +6,8 @@ const TrainBorder = () => {
     <div id="traintrack-border">
       <img src={tracks} className="traintracks" alt="logo" />
       <img src={tracks} className="traintracks" alt="logo" />
-      <img src={tracks} className="traintracks" alt="logo" />
-      <img src={tracks} className="traintracks" alt="logo" />
+      <img src={tracks} className="traintracks three" alt="logo" />
+      <img src={tracks} className="traintracks four" alt="logo" />
     </div>
   );
 };
