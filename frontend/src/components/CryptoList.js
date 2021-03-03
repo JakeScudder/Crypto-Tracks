@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
 import numeral from "numeral";
 
@@ -87,7 +88,11 @@ const CryptoList = ({ history }) => {
                       src={coin.image}
                     />
                   </td>
-                  <td className="coin-list-name">{formatName(coin.name)}</td>
+                  <td className="coin-list-name">
+                    <NavLink to={`/coin/${coin.id}/history`}>
+                      {formatName(coin.name)}
+                    </NavLink>
+                  </td>
                   <td className="coin-list-symbol">
                     {coin.symbol.toUpperCase()}
                   </td>

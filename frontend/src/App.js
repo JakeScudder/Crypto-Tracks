@@ -7,7 +7,7 @@ import CryptoList from "./components/CryptoList";
 import SingleCoin from "./components/SingleCoin";
 import NavBar from "./components/NavBar";
 import TrainBorder from "./components/TrainBorder";
-import CoinHistoryMonth from "./components/CoinHistoryMonth";
+import CoinHistory7Days from "./components/CoinHistory7Days";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
         <TrainBorder />
         <Route path="/home" component={CryptoList} />
         <Route exact path="/coin/:id" component={SingleCoin} />
-        <Route exact path="/coin/:id/history" component={CoinHistoryMonth} />
+        <Route exact path="/coin/:id/history" component={CoinHistory7Days} />
         <Route path="/search/:keyword" component={CryptoList} />
         <Route path="/" component={CryptoList} exact />
       </div>

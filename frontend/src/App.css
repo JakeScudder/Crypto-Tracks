@@ -59,6 +59,27 @@ html {
   margin-right: 10px;
 }
 
+/*******Coin Line Graph */
+.chart {
+  margin-left: auto;
+  margin-right: auto;
+  width: 850px;
+  height: 600px;
+}
+
+.historical-coin-container {
+  display: flex;
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.coin-chart-container {
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 85%;
+}
+
 /*******Images */
 
 .traintracks {
@@ -122,6 +143,11 @@ html {
 
   .App-header {
     height: 14vh;
+  }
+
+  .chart {
+    width: 400px;
+    height: 400px;
   }
 }
 
