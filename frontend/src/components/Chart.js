@@ -15,17 +15,17 @@ const Chart = ({ data, yValues }) => {
     <XYPlot
       yDomain={yValues}
       xType="ordinal"
-      margin={{ left: 75, bottom: 100 }}
-      width={350}
-      height={350}
+      margin={{ left: 60, bottom: 100 }}
+      width={325}
+      height={325}
       className="chart">
       <VerticalGridLines />
       <HorizontalGridLines />
       <XAxis tickLabelAngle={-45} style={{ fontWeight: "600" }} />
       <YAxis />
       <ChartLabel
-        xPercent={0.07}
-        yPercent={-0.18}
+        xPercent={0.02}
+        yPercent={-0.15}
         text="Price in $"
         className="alt-y-label"
       />

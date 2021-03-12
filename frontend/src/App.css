@@ -75,9 +75,6 @@ html {
 }
 .coin-chart-container {
   margin-top: 2rem;
-  margin-left: auto;
-  margin-right: auto;
-  width: 85%;
 }
 
 /*******Images */
@@ -93,14 +90,45 @@ html {
 
 /*******HOME // CoinList */
 
+/* This handles table scrolling*/
 #crypto-list-div {
-  overflow: scroll;
+  max-height: 800px;
+  overflow: auto;
 }
+
+.coin-table th {
+  position: sticky;
+  background: white;
+  top: 0;
+  z-index: 5;
+}
+/******* */
+
 .coin-table {
   margin-left: auto;
   margin-right: auto;
-  width: 85%;
-  overflow: scroll;
+  max-width: 700px;
+  overflow-x: scroll;
+}
+
+.coin-list-name {
+  position: sticky;
+  background: white;
+  left: 50px;
+  z-index: 2;
+}
+
+.image-container {
+  position: sticky;
+  background: white;
+  left: 0;
+  z-index: 2;
+  width: 40px;
+  margin-right: 1rem;
+}
+
+.coin-container td {
+  z-index: 1;
 }
 
 .coin-container {
@@ -116,10 +144,6 @@ html {
   margin-right: 1rem;
 }
 
-.image-container {
-  width: 40px;
-  margin-right: 1rem;
-}
 .coin-image {
   width: 100%;
   height: 40px;
@@ -129,10 +153,10 @@ html {
 
 @media screen and (max-width: 900px) {
   .coin-table th {
-    font-size: 10px;
+    font-size: 12px;
   }
   .coin-container td {
-    font-size: 10px;
+    font-size: 12px;
     padding-right: 10px;
   }
 
@@ -146,7 +170,7 @@ html {
   }
 
   .chart {
-    width: 400px;
+    width: 700px;
     height: 400px;
   }
 }

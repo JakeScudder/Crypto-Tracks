@@ -93,24 +93,7 @@ const CoinHistory7Days = ({ match }) => {
     return result;
   };
 
-  // const fetchCoinById = () => {
-  //   console.log("Fetching Coin Data");
-  //   let coinArr = [];
-  //   dates.forEach(async (date) => {
-  //     let url = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${date}`;
-  //     console.log(url);
-  //     await axios
-  //       .get(url)
-  //       .then((res) => coinArr.push(res.data))
-  //       .catch((err) => console.log(err));
-  //   });
-  //   setCoinData(coinArr);
-  //   setTimeout(() => {
-  //     setCoinsFetched(true);
-  //   }, 1000);
-  // };
-
-  //Trying new function
+  //Promise based chart data
   const fetchCoinById = () => {
     console.log("Fetching Coin Data");
 
