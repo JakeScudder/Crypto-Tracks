@@ -74,7 +74,7 @@ html {
   margin-right: auto;
 }
 .coin-chart-container {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 /*******Images */
@@ -99,7 +99,7 @@ html {
 .coin-table th {
   position: sticky;
   background: white;
-  top: 0;
+  top: -5px;
   z-index: 5;
 }
 /******* */

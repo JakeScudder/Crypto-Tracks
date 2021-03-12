@@ -168,7 +168,7 @@ const CoinHistory7Days = ({ match }) => {
 
   return (
     <div className="historial-coin-container">
-      <h2>{match.params.id.toUpperCase()} Past 7 Days</h2>
+      <h4>{match.params.id.toUpperCase()} Past 7 Days</h4>
       <div
         style={{
           display: "flex",

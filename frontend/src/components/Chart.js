@@ -15,7 +15,7 @@ const Chart = ({ data, yValues }) => {
     <XYPlot
       yDomain={yValues}
       xType="ordinal"
-      margin={{ left: 60, bottom: 100 }}
+      margin={{ left: 60, bottom: 50, top: 25 }}
       width={325}
       height={325}
       className="chart">
