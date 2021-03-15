@@ -13,6 +13,7 @@ const CoinHistory7Days = ({ match }) => {
   const [chartDates, setChartDates] = useState([]);
   const [chartLoading, setChartLoading] = useState(true);
   const [dataFetched, setDataFetched] = useState(false);
+  const [sixtyDayStatus, setSixtyDayStatus] = useState(false);
   const [thirtyDayStatus, setThirtyDayStatus] = useState(false);
   const [sevenDayStatus, setSevenDayStatus] = useState(false);
   const [YRange, setYRange] = useState([]);
@@ -20,7 +21,7 @@ const CoinHistory7Days = ({ match }) => {
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
-    if (thirtyDayStatus || sevenDayStatus) {
+    if (thirtyDayStatus || sevenDayStatus || sixtyDayStatus) {
       setTimeout(() => {
         if (!dataFetched) {
           fetchCoinById();
@@ -107,6 +108,8 @@ const CoinHistory7Days = ({ match }) => {
     return result;
   };
 
+  //******* Buttons*/
+
   //Handle 7 days Button
   const handleSeven = () => {
     setChartLoading(true);
@@ -114,6 +117,7 @@ const CoinHistory7Days = ({ match }) => {
     setDataFetched(false);
     setSevenDayStatus(true);
     setThirtyDayStatus(false);
+    setSixtyDayStatus(false);
     let emptArr = [];
     let days = lastSevenDays();
     let localChartDays = lastSevenDaysChart();
@@ -129,9 +133,28 @@ const CoinHistory7Days = ({ match }) => {
     console.log("In 30 button");
     setDataFetched(false);
     setThirtyDayStatus(true);
+    setSixtyDayStatus(false);
+    setSevenDayStatus(false);
     let emptArr = [];
     let days = lastThirtyDays();
     let localChartDays = lastThirtyDaysChart();
+    setDates(emptArr);
+    setChartDates(emptArr);
+    setDates(days);
+    setChartDates(localChartDays);
+  };
+
+  //Handle 60 days Button
+  const handleSixty = () => {
+    setChartLoading(true);
+    console.log("In 60 button");
+    setDataFetched(false);
+    setSixtyDayStatus(true);
+    setThirtyDayStatus(false);
+    setSevenDayStatus(false);
+    let emptArr = [];
+    let days = lastSixtyDays();
+    let localChartDays = lastSixtyDaysChart();
     setDates(emptArr);
     setChartDates(emptArr);
     setDates(days);
@@ -160,6 +183,31 @@ const CoinHistory7Days = ({ match }) => {
     }
     result.reverse();
     console.log("Thirty Days for Chart:", result);
+    return result;
+  };
+
+  //Get last 60 days
+  const lastSixtyDays = () => {
+    var result = [];
+    for (var i = 0; i <= 60; i += 10) {
+      var d = new Date();
+      d.setDate(d.getDate() - i);
+      result.push(formatDate(d));
+    }
+    console.log("Sixty Days:", result);
+    return result;
+  };
+
+  //Get last 60 days for Chart
+  const lastSixtyDaysChart = () => {
+    var result = [];
+    for (var i = 0; i <= 60; i += 10) {
+      var d = new Date();
+      d.setDate(d.getDate() - i);
+      result.push(formatChartDate(d));
+    }
+    result.reverse();
+    console.log("Sixty Days for Chart:", result);
     return result;
   };
 
@@ -261,12 +309,14 @@ const CoinHistory7Days = ({ match }) => {
   return (
     <div className="historial-coin-container">
       <h4>
-        {match.params.id.toUpperCase()}{" "}
-        {!thirtyDayStatus ? "Past 7 Days" : "Past 30 Days"}
+        {match.params.id.toUpperCase()} {sevenDayStatus ? "Past 7 Days" : null}
+        {thirtyDayStatus ? "Past 30 Days" : null}
+        {sixtyDayStatus ? "Past 60 Days" : null}
       </h4>
       <div className="button-graph-container">
         <Button onClick={handleSeven}>7 Days</Button>
         <Button onClick={handleThirty}>30 Days</Button>
+        <Button onClick={handleSixty}>60 Days</Button>
       </div>
       <div className="coin-chart-container">
         {chartLoading ? (
