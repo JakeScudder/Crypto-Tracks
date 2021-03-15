@@ -97,7 +97,10 @@ const CryptoList = ({ history }) => {
                     {coin.symbol.toUpperCase()}
                   </td>
                   <td className="coin-list-price">
-                    ${formatNumber(coin.current_price.toFixed(2))}
+                    $
+                    {coin.current_price <= 0.5
+                      ? coin.current_price.toFixed(4)
+                      : formatNumber(coin.current_price.toFixed(2))}
                   </td>
                   {Math.sign(coin.price_change_24h) > 0 ? (
                     <td
