@@ -2,34 +2,47 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Chart from "./Chart";
 
+import { Button } from "react-bootstrap";
+
 import Loader from "./Loader";
 
 const CoinHistory7Days = ({ match }) => {
   //Index 0 is yesterday, index 6 is 7 days ago
   const [coinData, setCoinData] = useState([]);
-  const [coinsFetched, setCoinsFetched] = useState(false);
   const [dates, setDates] = useState([]);
   const [chartDates, setChartDates] = useState([]);
   const [chartLoading, setChartLoading] = useState(true);
+  const [dataFetched, setDataFetched] = useState(false);
+  const [thirtyDayStatus, setThirtyDayStatus] = useState(false);
   const [YRange, setYRange] = useState([]);
 
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
+    if (thirtyDayStatus) {
+      setTimeout(() => {
+        if (!dataFetched) {
+          fetchCoinById();
+        }
+      }, 1500);
+    }
+
     if (dates.length === 0) {
       setDates(dates.concat(lastSevenDays()));
       setChartDates(dates.concat(lastSevenDaysChart()));
     } else {
-      fetchCoinById();
+      if (!dataFetched && !thirtyDayStatus) {
+        console.log("Fetching Coin in use Effect");
+        fetchCoinById();
+      }
     }
 
-    if (coinsFetched) {
-      console.log("coins were fetched");
+    if (coinData.length > 0 && dataFetched) {
       formatDataForChart();
     }
 
     // eslint-disable-next-line
-  }, [setDates, dates, coinsFetched]);
+  }, [setDates, dates, coinData]);
 
   const formatDate = (date) => {
     var dd = date.getDate();
@@ -93,17 +106,76 @@ const CoinHistory7Days = ({ match }) => {
     return result;
   };
 
+  //Handle 7 days Button
+  const handleSeven = () => {
+    setDates(dates.concat(lastSevenDays()));
+    setChartDates(dates.concat(lastSevenDaysChart()));
+  };
+
+  //Handle 30 days Button
+  const handleThirty = () => {
+    setChartLoading(true);
+    console.log("In 30 button");
+    setDataFetched(false);
+    setThirtyDayStatus(true);
+    let emptArr = [];
+    let days = lastThirtyDays();
+    let localChartDays = lastThirtyDaysChart();
+    setDates(emptArr);
+    setChartDates(emptArr);
+    setDates(days);
+    setChartDates(localChartDays);
+  };
+
+  //Get last 30 days
+  const lastThirtyDays = () => {
+    var result = [];
+    for (var i = 0; i <= 30; i += 5) {
+      var d = new Date();
+      d.setDate(d.getDate() - i);
+      result.push(formatDate(d));
+    }
+    console.log("Thirty Days:", result);
+    return result;
+  };
+
+  //Get last 30 days for Chart
+  const lastThirtyDaysChart = () => {
+    var result = [];
+    for (var i = 0; i <= 30; i += 5) {
+      var d = new Date();
+      d.setDate(d.getDate() - i);
+      result.push(formatChartDate(d));
+    }
+    result.reverse();
+    console.log("Thirty Days for Chart:", result);
+    return result;
+  };
+
   //Promise based chart data
   const fetchCoinById = () => {
     console.log("Fetching Coin Data");
+    console.log(dates);
 
-    let url0 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[0]}`;
-    let url1 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[1]}`;
-    let url2 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[2]}`;
-    let url3 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[3]}`;
-    let url4 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[4]}`;
-    let url5 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[5]}`;
-    let url6 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[6]}`;
+    let url0;
+    let url1;
+    let url2;
+    let url3;
+    let url4;
+    let url5;
+    let url6;
+
+    if (dates && dates[0]) {
+      console.log("dates:", typeof dates);
+      console.log("dates[0]:", typeof dates[0]);
+      url0 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[0]}`;
+      url1 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[1]}`;
+      url2 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[2]}`;
+      url3 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[3]}`;
+      url4 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[4]}`;
+      url5 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[5]}`;
+      url6 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[6]}`;
+    }
 
     const promise0 = axios.get(url0);
     const promise1 = axios.get(url1);
@@ -114,36 +186,42 @@ const CoinHistory7Days = ({ match }) => {
     const promise6 = axios.get(url6);
 
     Promise.all([
-      promise0,
-      promise1,
-      promise2,
-      promise3,
-      promise4,
-      promise5,
       promise6,
+      promise5,
+      promise4,
+      promise3,
+      promise2,
+      promise1,
+      promise0,
     ])
-      .then((values) => setCoinData(values))
+      .then((values) => {
+        let emptArr = [];
+        console.log(values);
+        setDataFetched(true);
+        console.log("coinData Fetched");
+        setCoinData(emptArr);
+        setCoinData(values);
+      })
       .catch((err) => console.log(err));
-
-    setTimeout(() => {
-      setCoinsFetched(true);
-    }, 1500);
   };
 
   const formatDataForChart = () => {
     console.log("Building Chart");
-    console.log(coinData);
+    console.log("coinData State:", coinData);
+
     let data = [];
-    chartDates.forEach((date, index) => {
-      let coinValue = coinData[index].data.market_data.current_price.usd;
-      console.log("Date:", date);
-      console.log("Coin Value:", coinValue);
-      let xyformat = {
-        x: date,
-        y: coinValue,
-      };
-      data.push(xyformat);
-    });
+    if (coinData && coinData[0]) {
+      chartDates.forEach((date, index) => {
+        let coinValue = coinData[index].data.market_data.current_price.usd;
+        console.log("Chart Date:", date);
+        console.log("Coin Value:", coinValue);
+        let xyformat = {
+          x: date,
+          y: coinValue,
+        };
+        data.push(xyformat);
+      });
+    }
 
     //Sort the Y Value in order to define Chart Min/Max
     let yData = [];
@@ -159,6 +237,9 @@ const CoinHistory7Days = ({ match }) => {
 
     yMin = yMin - yMin * 0.1;
     yMax = yMax + yMax * 0.1;
+
+    console.log("ymin:", yMin);
+    console.log("ymax:", yMax);
 
     let yValues = [yMin, yMax];
     setYRange(yValues);
@@ -176,7 +257,10 @@ const CoinHistory7Days = ({ match }) => {
           width: "40%",
           marginLeft: "auto",
           marginRight: "auto",
-        }}></div>
+        }}>
+        <Button onClick={handleSeven}>7 Days</Button>
+        <Button onClick={handleThirty}>30 Days</Button>
+      </div>
       <div className="coin-chart-container">
         {chartLoading ? (
           <Loader />
