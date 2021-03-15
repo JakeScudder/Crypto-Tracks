@@ -10,15 +10,16 @@ const CoinHistory7Days = ({ match }) => {
   //Index 0 is yesterday, index 6 is 7 days ago
   const [coinData, setCoinData] = useState([]);
   const [dates, setDates] = useState([]);
-  const [chartDates, setChartDates] = useState([]);
-  const [chartLoading, setChartLoading] = useState(true);
   const [dataFetched, setDataFetched] = useState(false);
-  const [sixtyDayStatus, setSixtyDayStatus] = useState(false);
-  const [thirtyDayStatus, setThirtyDayStatus] = useState(false);
-  const [sevenDayStatus, setSevenDayStatus] = useState(false);
-  const [YRange, setYRange] = useState([]);
 
+  const [sevenDayStatus, setSevenDayStatus] = useState(true);
+  const [thirtyDayStatus, setThirtyDayStatus] = useState(false);
+  const [sixtyDayStatus, setSixtyDayStatus] = useState(false);
+
+  const [chartDates, setChartDates] = useState([]);
   const [chartData, setChartData] = useState([]);
+  const [YRange, setYRange] = useState([]);
+  const [chartLoading, setChartLoading] = useState(true);
 
   useEffect(() => {
     if (thirtyDayStatus || sevenDayStatus || sixtyDayStatus) {
@@ -314,9 +315,15 @@ const CoinHistory7Days = ({ match }) => {
         {sixtyDayStatus ? "Past 60 Days" : null}
       </h4>
       <div className="button-graph-container">
-        <Button onClick={handleSeven}>7 Days</Button>
-        <Button onClick={handleThirty}>30 Days</Button>
-        <Button onClick={handleSixty}>60 Days</Button>
+        <Button className="graph-days-button" onClick={handleSeven}>
+          7 Days
+        </Button>
+        <Button className="graph-days-button" onClick={handleThirty}>
+          30 Days
+        </Button>
+        <Button className="graph-days-button" onClick={handleSixty}>
+          60 Days
+        </Button>
       </div>
       <div className="coin-chart-container">
         {chartLoading ? (
