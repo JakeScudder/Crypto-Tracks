@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Crypto-Tracks/static/css/main.4b38797c.chunk.css",
-    "main.js": "/Crypto-Tracks/static/js/main.72a19969.chunk.js",
-    "main.js.map": "/Crypto-Tracks/static/js/main.72a19969.chunk.js.map",
+    "main.js": "/Crypto-Tracks/static/js/main.78484325.chunk.js",
+    "main.js.map": "/Crypto-Tracks/static/js/main.78484325.chunk.js.map",
     "runtime-main.js": "/Crypto-Tracks/static/js/runtime-main.7077ca05.js",
     "runtime-main.js.map": "/Crypto-Tracks/static/js/runtime-main.7077ca05.js.map",
     "static/css/2.62e7949a.chunk.css": "/Crypto-Tracks/static/css/2.62e7949a.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.62e7949a.chunk.css",
     "static/js/2.2f91effd.chunk.js",
     "static/css/main.4b38797c.chunk.css",
-    "static/js/main.72a19969.chunk.js"
+    "static/js/main.78484325.chunk.js"
   ]
 }
