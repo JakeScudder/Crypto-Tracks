@@ -77,6 +77,15 @@ html {
   margin-top: 1rem;
 }
 
+.button-graph-container {
+  display: "flex";
+  flex-direction: "row-wrap";
+  width: "40%";
+  margin-left: "auto";
+  margin-right: "auto";
+  justify-content: center;
+}
+
 /*******Images */
 
 .traintracks {

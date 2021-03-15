@@ -14,12 +14,13 @@ const CoinHistory7Days = ({ match }) => {
   const [chartLoading, setChartLoading] = useState(true);
   const [dataFetched, setDataFetched] = useState(false);
   const [thirtyDayStatus, setThirtyDayStatus] = useState(false);
+  const [sevenDayStatus, setSevenDayStatus] = useState(false);
   const [YRange, setYRange] = useState([]);
 
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
-    if (thirtyDayStatus) {
+    if (thirtyDayStatus || sevenDayStatus) {
       setTimeout(() => {
         if (!dataFetched) {
           fetchCoinById();
@@ -108,8 +109,18 @@ const CoinHistory7Days = ({ match }) => {
 
   //Handle 7 days Button
   const handleSeven = () => {
-    setDates(dates.concat(lastSevenDays()));
-    setChartDates(dates.concat(lastSevenDaysChart()));
+    setChartLoading(true);
+    console.log("In 7 button");
+    setDataFetched(false);
+    setSevenDayStatus(true);
+    setThirtyDayStatus(false);
+    let emptArr = [];
+    let days = lastSevenDays();
+    let localChartDays = lastSevenDaysChart();
+    setDates(emptArr);
+    setChartDates(emptArr);
+    setDates(days);
+    setChartDates(localChartDays);
   };
 
   //Handle 30 days Button
@@ -249,15 +260,11 @@ const CoinHistory7Days = ({ match }) => {
 
   return (
     <div className="historial-coin-container">
-      <h4>{match.params.id.toUpperCase()} Past 7 Days</h4>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row-wrap",
-          width: "40%",
-          marginLeft: "auto",
-          marginRight: "auto",
-        }}>
+      <h4>
+        {match.params.id.toUpperCase()}{" "}
+        {!thirtyDayStatus ? "Past 7 Days" : "Past 30 Days"}
+      </h4>
+      <div className="button-graph-container">
         <Button onClick={handleSeven}>7 Days</Button>
         <Button onClick={handleThirty}>30 Days</Button>
       </div>
