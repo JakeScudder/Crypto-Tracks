@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Chart from "./Chart";
+import ChartInfo from "./ChartInfo";
 
 import { Button } from "react-bootstrap";
 
@@ -307,13 +308,25 @@ const CoinHistory7Days = ({ match }) => {
     setChartData(data);
   };
 
+  // <img src={coinData[0].data.img} alt={coinData[0].data.name}/>
   return (
     <div className="historial-coin-container">
-      <h4>
-        {match.params.id.toUpperCase()} {sevenDayStatus ? "Past 7 Days" : null}
-        {thirtyDayStatus ? "Past 30 Days" : null}
-        {sixtyDayStatus ? "Past 60 Days" : null}
-      </h4>
+      <div className="image-title-container">
+        {coinData && coinData[0] ? (
+          <img
+            className="coin-image-graph"
+            src={coinData[0].data.image.small}
+            alt={coinData[0].data.name}
+          />
+        ) : null}
+        <h4>
+          {match.params.id.toUpperCase()}{" "}
+          {sevenDayStatus ? "Past 7 Days" : null}
+          {thirtyDayStatus ? "Past 30 Days" : null}
+          {sixtyDayStatus ? "Past 60 Days" : null}
+        </h4>
+      </div>
+
       <div className="button-graph-container">
         <Button className="graph-days-button" onClick={handleSeven}>
           7 Days
@@ -329,7 +342,10 @@ const CoinHistory7Days = ({ match }) => {
         {chartLoading ? (
           <Loader />
         ) : chartData.length > 0 ? (
-          <Chart data={chartData} yValues={YRange} />
+          <>
+            <Chart data={chartData} yValues={YRange} />
+            <ChartInfo data={chartData} />
+          </>
         ) : null}
       </div>
     </div>

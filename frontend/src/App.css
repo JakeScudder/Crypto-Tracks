@@ -77,6 +77,9 @@ html {
   margin-top: 1rem;
 }
 
+.coin-image-graph {
+}
+
 .button-graph-container {
   display: flex;
   flex-direction: wrap;
@@ -90,6 +93,63 @@ html {
 .graph-days-button {
   border-radius: 5px;
   margin-right: 5px;
+}
+
+/*******Chart Info */
+
+.chart-info-header.row {
+  max-width: 375px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.6rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+  justify-content: center;
+}
+
+.chart-info-header.col {
+  max-width: 45%;
+}
+
+.chart-info-container.row {
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  justify-content: center;
+  border-radius: 5px;
+  background: #808080bf;
+}
+
+.chart-info-data-point.row {
+  width: 100%;
+  margin-top: 0.3rem;
+  font-size: 1rem;
+  justify-content: center;
+}
+
+.xypoint.col {
+  max-width: 50%;
+}
+
+.coin-image-graph {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+}
+
+.image-title-container {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 35px;
+  justify-content: center;
+}
+
+.image-title-container h4 {
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 /*******Images */
