@@ -3,7 +3,7 @@
 <img margin-left="auto" margin-right="auto" src="frontend/src/Crypto-Tracker.png" height="300">
 </img>
 
-## Crypto Tracks // React 
+## Crypto Tracks - React // Redux
 
 </div>
 
@@ -13,7 +13,7 @@ A crypto-coin tracking website that uses the coingecko API.  All graphs are made
 
 ### Technologies
 
-React
+React, Redux
 
 ### Check it out
 
