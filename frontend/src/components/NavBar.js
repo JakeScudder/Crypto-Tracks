@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { withRouter } from "react-router";
 import { searchCoin } from "../actions/coinActions";
 import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
 
 import { NavLink } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = ({ history }) => {
   const [keyword, setKeyword] = useState("");
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(keyword);
     let formattedKeyword = keyword.toLowerCase();
     dispatch(searchCoin(formattedKeyword));
+    //Edit
+    console.log(history);
+    history.push("/");
   };
 
   const handleReset = () => {
@@ -59,4 +62,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default withRouter(NavBar);

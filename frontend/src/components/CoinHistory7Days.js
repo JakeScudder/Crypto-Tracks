@@ -115,7 +115,6 @@ const CoinHistory7Days = ({ match }) => {
   //Handle 7 days Button
   const handleSeven = () => {
     setChartLoading(true);
-    console.log("In 7 button");
     setDataFetched(false);
     setSevenDayStatus(true);
     setThirtyDayStatus(false);
@@ -132,7 +131,6 @@ const CoinHistory7Days = ({ match }) => {
   //Handle 30 days Button
   const handleThirty = () => {
     setChartLoading(true);
-    console.log("In 30 button");
     setDataFetched(false);
     setThirtyDayStatus(true);
     setSixtyDayStatus(false);
@@ -149,7 +147,6 @@ const CoinHistory7Days = ({ match }) => {
   //Handle 60 days Button
   const handleSixty = () => {
     setChartLoading(true);
-    console.log("In 60 button");
     setDataFetched(false);
     setSixtyDayStatus(true);
     setThirtyDayStatus(false);
@@ -171,7 +168,6 @@ const CoinHistory7Days = ({ match }) => {
       d.setDate(d.getDate() - i);
       result.push(formatDate(d));
     }
-    console.log("Thirty Days:", result);
     return result;
   };
 
@@ -184,7 +180,6 @@ const CoinHistory7Days = ({ match }) => {
       result.push(formatChartDate(d));
     }
     result.reverse();
-    console.log("Thirty Days for Chart:", result);
     return result;
   };
 
@@ -196,7 +191,6 @@ const CoinHistory7Days = ({ match }) => {
       d.setDate(d.getDate() - i);
       result.push(formatDate(d));
     }
-    console.log("Sixty Days:", result);
     return result;
   };
 
@@ -209,14 +203,12 @@ const CoinHistory7Days = ({ match }) => {
       result.push(formatChartDate(d));
     }
     result.reverse();
-    console.log("Sixty Days for Chart:", result);
     return result;
   };
 
   //Promise based chart data
   const fetchCoinById = () => {
     console.log("Fetching Coin Data");
-    console.log(dates);
 
     let url0;
     let url1;
@@ -227,8 +219,6 @@ const CoinHistory7Days = ({ match }) => {
     let url6;
 
     if (dates && dates[0]) {
-      console.log("dates:", typeof dates);
-      console.log("dates[0]:", typeof dates[0]);
       url0 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[0]}`;
       url1 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[1]}`;
       url2 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[2]}`;
@@ -257,7 +247,6 @@ const CoinHistory7Days = ({ match }) => {
     ])
       .then((values) => {
         let emptArr = [];
-        console.log(values);
         setDataFetched(true);
         console.log("coinData Fetched");
         setCoinData(emptArr);
@@ -268,14 +257,12 @@ const CoinHistory7Days = ({ match }) => {
 
   const formatDataForChart = () => {
     console.log("Building Chart");
-    console.log("coinData State:", coinData);
+    // console.log("coinData State:", coinData);
 
     let data = [];
     if (coinData && coinData[0]) {
       chartDates.forEach((date, index) => {
         let coinValue = coinData[index].data.market_data.current_price.usd;
-        console.log("Chart Date:", date);
-        console.log("Coin Value:", coinValue);
         let xyformat = {
           x: date,
           y: coinValue,
@@ -299,16 +286,12 @@ const CoinHistory7Days = ({ match }) => {
     yMin = yMin - yMin * 0.1;
     yMax = yMax + yMax * 0.1;
 
-    console.log("ymin:", yMin);
-    console.log("ymax:", yMax);
-
     let yValues = [yMin, yMax];
     setYRange(yValues);
     setChartLoading(false);
     setChartData(data);
   };
 
-  // <img src={coinData[0].data.img} alt={coinData[0].data.name}/>
   return (
     <div className="historial-coin-container">
       <div className="image-title-container">

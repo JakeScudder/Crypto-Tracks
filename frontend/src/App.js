@@ -1,5 +1,5 @@
 import logo from "./tree.svg";
-import { HashRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import "./yeti.bootstrap.min.css";
 
@@ -18,11 +18,13 @@ function App() {
         </header>
         <NavBar />
         <TrainBorder />
-        <Route path="/home" component={CryptoList} />
-        <Route exact path="/coin/:id" component={SingleCoin} />
-        <Route exact path="/coin/:id/history" component={CoinHistory7Days} />
-        <Route path="/search/:keyword" component={CryptoList} />
-        <Route path="/" component={CryptoList} exact />
+        <Switch>
+          <Route path="/home" component={CryptoList} />
+          <Route exact path="/coin/:id" component={SingleCoin} />
+          <Route exact path="/coin/:id/history" component={CoinHistory7Days} />
+          <Route path="/search/:keyword" component={CryptoList} />
+          <Route path="/" component={CryptoList} exact />
+        </Switch>
       </div>
     </Router>
   );
