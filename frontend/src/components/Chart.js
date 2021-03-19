@@ -11,6 +11,7 @@ import {
 } from "react-vis";
 
 const Chart = ({ data, yValues }) => {
+  //Chart's data and yValues are passed down from the CoinHistory7Days component
   return (
     <XYPlot
       yDomain={yValues}

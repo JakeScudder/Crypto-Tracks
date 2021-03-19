@@ -2,13 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Chart from "./Chart";
 import ChartInfo from "./ChartInfo";
-
 import { Button } from "react-bootstrap";
-
 import Loader from "./Loader";
 
 const CoinHistory7Days = ({ match }) => {
-  //Index 0 is yesterday, index 6 is 7 days ago
   const [coinData, setCoinData] = useState([]);
   const [dates, setDates] = useState([]);
   const [dataFetched, setDataFetched] = useState(false);
@@ -23,24 +20,23 @@ const CoinHistory7Days = ({ match }) => {
   const [chartLoading, setChartLoading] = useState(true);
 
   useEffect(() => {
+    //Checks if the status changes from user button click
     if (thirtyDayStatus || sevenDayStatus || sixtyDayStatus) {
       setTimeout(() => {
+        //If data has not been fetched
         if (!dataFetched) {
           fetchCoinById();
         }
       }, 1500);
     }
 
+    //Set dates if they aren't found
     if (dates.length === 0) {
       setDates(dates.concat(lastSevenDays()));
       setChartDates(dates.concat(lastSevenDaysChart()));
-    } else {
-      if (!dataFetched && !thirtyDayStatus) {
-        console.log("Fetching Coin in use Effect");
-        fetchCoinById();
-      }
     }
 
+    //Once coinData is available and data has been fetched, build graph
     if (coinData.length > 0 && dataFetched) {
       formatDataForChart();
     }
@@ -87,6 +83,64 @@ const CoinHistory7Days = ({ match }) => {
     return format;
   };
 
+  //******* Buttons*/
+
+  //Handle 7 days Button
+  const handleSeven = () => {
+    //Set loading variables and graph state
+    setChartLoading(true);
+    setDataFetched(false);
+    setSevenDayStatus(true);
+    setThirtyDayStatus(false);
+    setSixtyDayStatus(false);
+    //Gets proper dates for fetch function, clears old dates, adds new array
+    let emptArr = [];
+    let days = lastSevenDays();
+    let localChartDays = lastSevenDaysChart();
+    setDates(emptArr);
+    setChartDates(emptArr);
+    setDates(days);
+    setChartDates(localChartDays);
+  };
+
+  //Handle 30 days Button
+  const handleThirty = () => {
+    //Set loading variables and graph state
+    setChartLoading(true);
+    setDataFetched(false);
+    setThirtyDayStatus(true);
+    setSixtyDayStatus(false);
+    setSevenDayStatus(false);
+    //Gets proper dates for fetch function, clears old dates, adds new array
+    let emptArr = [];
+    let days = lastThirtyDays();
+    let localChartDays = lastThirtyDaysChart();
+    setDates(emptArr);
+    setChartDates(emptArr);
+    setDates(days);
+    setChartDates(localChartDays);
+  };
+
+  //Handle 60 days Button
+  const handleSixty = () => {
+    //Set loading variables and graph state
+    setChartLoading(true);
+    setDataFetched(false);
+    setSixtyDayStatus(true);
+    setThirtyDayStatus(false);
+    setSevenDayStatus(false);
+    //Gets proper dates for fetch function, clears old dates, adds new array
+    let emptArr = [];
+    let days = lastSixtyDays();
+    let localChartDays = lastSixtyDaysChart();
+    setDates(emptArr);
+    setChartDates(emptArr);
+    setDates(days);
+    setChartDates(localChartDays);
+  };
+
+  /****Formatting Dates for 7, 30, and 60 days */
+
   //Get last 7 days
   const lastSevenDays = () => {
     var result = [];
@@ -108,56 +162,6 @@ const CoinHistory7Days = ({ match }) => {
     }
     result.reverse();
     return result;
-  };
-
-  //******* Buttons*/
-
-  //Handle 7 days Button
-  const handleSeven = () => {
-    setChartLoading(true);
-    setDataFetched(false);
-    setSevenDayStatus(true);
-    setThirtyDayStatus(false);
-    setSixtyDayStatus(false);
-    let emptArr = [];
-    let days = lastSevenDays();
-    let localChartDays = lastSevenDaysChart();
-    setDates(emptArr);
-    setChartDates(emptArr);
-    setDates(days);
-    setChartDates(localChartDays);
-  };
-
-  //Handle 30 days Button
-  const handleThirty = () => {
-    setChartLoading(true);
-    setDataFetched(false);
-    setThirtyDayStatus(true);
-    setSixtyDayStatus(false);
-    setSevenDayStatus(false);
-    let emptArr = [];
-    let days = lastThirtyDays();
-    let localChartDays = lastThirtyDaysChart();
-    setDates(emptArr);
-    setChartDates(emptArr);
-    setDates(days);
-    setChartDates(localChartDays);
-  };
-
-  //Handle 60 days Button
-  const handleSixty = () => {
-    setChartLoading(true);
-    setDataFetched(false);
-    setSixtyDayStatus(true);
-    setThirtyDayStatus(false);
-    setSevenDayStatus(false);
-    let emptArr = [];
-    let days = lastSixtyDays();
-    let localChartDays = lastSixtyDaysChart();
-    setDates(emptArr);
-    setChartDates(emptArr);
-    setDates(days);
-    setChartDates(localChartDays);
   };
 
   //Get last 30 days
@@ -206,7 +210,7 @@ const CoinHistory7Days = ({ match }) => {
     return result;
   };
 
-  //Promise based chart data
+  //Promise based fetch function
   const fetchCoinById = () => {
     console.log("Fetching Coin Data");
 
@@ -236,6 +240,7 @@ const CoinHistory7Days = ({ match }) => {
     const promise5 = axios.get(url5);
     const promise6 = axios.get(url6);
 
+    //Promise.all is sorted by Most Recent Day first
     Promise.all([
       promise6,
       promise5,
@@ -247,6 +252,7 @@ const CoinHistory7Days = ({ match }) => {
     ])
       .then((values) => {
         let emptArr = [];
+        //Change fetch state to completed
         setDataFetched(true);
         console.log("coinData Fetched");
         setCoinData(emptArr);
@@ -255,6 +261,7 @@ const CoinHistory7Days = ({ match }) => {
       .catch((err) => console.log(err));
   };
 
+  //Builds chart
   const formatDataForChart = () => {
     console.log("Building Chart");
     // console.log("coinData State:", coinData);
@@ -271,7 +278,7 @@ const CoinHistory7Days = ({ match }) => {
       });
     }
 
-    //Sort the Y Value in order to define Chart Min/Max
+    //Sort the Y Value in order to calculate Chart Min/Max
     let yData = [];
     data.forEach((obj) => {
       yData.push(obj.y);

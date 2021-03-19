@@ -13,12 +13,12 @@ const NavBar = ({ history }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     let formattedKeyword = keyword.toLowerCase();
+    //Dispatch Redux action
     dispatch(searchCoin(formattedKeyword));
-    //Edit
-    console.log(history);
     history.push("/");
   };
 
+  //Clears search term when returning to Home screen
   const handleReset = () => {
     dispatch(searchCoin(""));
   };

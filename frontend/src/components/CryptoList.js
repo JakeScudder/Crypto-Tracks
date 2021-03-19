@@ -8,8 +8,8 @@ const CryptoList = ({ history }) => {
   const [coinList, setCoinList] = useState([]);
   const [searchList, setSearchList] = useState([]);
 
+  //Grab Redux state
   const coinSearch = useSelector((state) => state.coinSearch);
-
   const { keyword } = coinSearch;
 
   useEffect(() => {
@@ -19,24 +19,26 @@ const CryptoList = ({ history }) => {
       fetchCoinList();
     }
 
-    //Searches through coins for keyword
-    const handleSearch = (keyword) => {
-      console.log("searching");
-      let result = [];
-      coinList.forEach((coin) => {
-        if (coin.id.includes(keyword)) {
-          result.push(coin);
-        }
-      });
-      setSearchList(result);
-      history.push(`/search/${keyword}`);
-    };
-
+    //This keyword is grabbed from the global Redux state
     if (keyword) {
       handleSearch(keyword);
     }
   }, [coinList, keyword, history]);
 
+  //Searches through coins for keyword
+  const handleSearch = (keyword) => {
+    console.log("searching");
+    let result = [];
+    coinList.forEach((coin) => {
+      if (coin.id.includes(keyword)) {
+        result.push(coin);
+      }
+    });
+    setSearchList(result);
+    history.push(`/search/${keyword}`);
+  };
+
+  //Fetches coin data from coingecko
   const fetchCoinList = async () => {
     console.log("fetching coins");
     await axios
@@ -78,6 +80,7 @@ const CryptoList = ({ history }) => {
           </tr>
         </thead>
         <tbody>
+          {/* If no keyword in redux state, load normal top 100 coins */}
           {coinList && coinList.length > 10 && keyword === ""
             ? coinList.slice(0, 100).map((coin) => (
                 <tr height="50px" className="coin-container" key={coin.id}>
@@ -156,7 +159,11 @@ const CryptoList = ({ history }) => {
                       src={coin.image}
                     />
                   </td>
-                  <td className="coin-list-name">{formatName(coin.name)}</td>
+                  <td className="coin-list-name">
+                    <NavLink to={`/coin/${coin.id}/history`}>
+                      {formatName(coin.name)}
+                    </NavLink>
+                  </td>
                   <td className="coin-list-symbol">
                     {coin.symbol.toUpperCase()}
                   </td>

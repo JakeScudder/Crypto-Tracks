@@ -6,6 +6,7 @@ const ChartInfo = ({ data }) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
+  //This simple component displays Chart data in a small table below the graph. Data is from the CoinHistory7Days Component
   return (
     <>
       <Row className="chart-info-header">
