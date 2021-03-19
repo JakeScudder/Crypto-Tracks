@@ -1,6 +1,6 @@
 <div align="center">
 
-<img margin-left="auto" margin-right="auto" src="/src/tarot-screen.png" height="300">
+<img margin-left="auto" margin-right="auto" src="frontend/src/Crypto-Tracker.png" height="300">
 </img>
 
 ## Crypto Tracks // React 
