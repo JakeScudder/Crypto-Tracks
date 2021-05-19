@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/Crypto-Tracks/static/css/main.789a9f85.chunk.css",
-    "main.js": "/Crypto-Tracks/static/js/main.493fcdd2.chunk.js",
-    "main.js.map": "/Crypto-Tracks/static/js/main.493fcdd2.chunk.js.map",
-    "runtime-main.js": "/Crypto-Tracks/static/js/runtime-main.7077ca05.js",
-    "runtime-main.js.map": "/Crypto-Tracks/static/js/runtime-main.7077ca05.js.map",
-    "static/css/2.62e7949a.chunk.css": "/Crypto-Tracks/static/css/2.62e7949a.chunk.css",
-    "static/js/2.23c8c168.chunk.js": "/Crypto-Tracks/static/js/2.23c8c168.chunk.js",
-    "static/js/2.23c8c168.chunk.js.map": "/Crypto-Tracks/static/js/2.23c8c168.chunk.js.map",
+    "main.css": "/Crypto-Tracks/static/css/main.19549e56.chunk.css",
+    "main.js": "/Crypto-Tracks/static/js/main.e2c7ee91.chunk.js",
+    "main.js.map": "/Crypto-Tracks/static/js/main.e2c7ee91.chunk.js.map",
+    "runtime-main.js": "/Crypto-Tracks/static/js/runtime-main.77fca6bf.js",
+    "runtime-main.js.map": "/Crypto-Tracks/static/js/runtime-main.77fca6bf.js.map",
+    "static/css/2.adc6f56e.chunk.css": "/Crypto-Tracks/static/css/2.adc6f56e.chunk.css",
+    "static/js/2.3fd2f232.chunk.js": "/Crypto-Tracks/static/js/2.3fd2f232.chunk.js",
+    "static/js/2.3fd2f232.chunk.js.map": "/Crypto-Tracks/static/js/2.3fd2f232.chunk.js.map",
     "index.html": "/Crypto-Tracks/index.html",
-    "static/css/2.62e7949a.chunk.css.map": "/Crypto-Tracks/static/css/2.62e7949a.chunk.css.map",
-    "static/css/main.789a9f85.chunk.css.map": "/Crypto-Tracks/static/css/main.789a9f85.chunk.css.map",
-    "static/js/2.23c8c168.chunk.js.LICENSE.txt": "/Crypto-Tracks/static/js/2.23c8c168.chunk.js.LICENSE.txt",
+    "static/css/2.adc6f56e.chunk.css.map": "/Crypto-Tracks/static/css/2.adc6f56e.chunk.css.map",
+    "static/css/main.19549e56.chunk.css.map": "/Crypto-Tracks/static/css/main.19549e56.chunk.css.map",
+    "static/js/2.3fd2f232.chunk.js.LICENSE.txt": "/Crypto-Tracks/static/js/2.3fd2f232.chunk.js.LICENSE.txt",
     "static/media/tracks.0a43b862.svg": "/Crypto-Tracks/static/media/tracks.0a43b862.svg",
     "static/media/train.cf802508.svg": "/Crypto-Tracks/static/media/train.cf802508.svg",
     "static/media/tree.512693fd.svg": "/Crypto-Tracks/static/media/tree.512693fd.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.7077ca05.js",
-    "static/css/2.62e7949a.chunk.css",
-    "static/js/2.23c8c168.chunk.js",
-    "static/css/main.789a9f85.chunk.css",
-    "static/js/main.493fcdd2.chunk.js"
+    "static/js/runtime-main.77fca6bf.js",
+    "static/css/2.adc6f56e.chunk.css",
+    "static/js/2.3fd2f232.chunk.js",
+    "static/css/main.19549e56.chunk.css",
+    "static/js/main.e2c7ee91.chunk.js"
   ]
 }
