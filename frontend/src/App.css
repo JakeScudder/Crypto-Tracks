@@ -28,12 +28,8 @@ html {
 }
 
 .App-header {
-  background: linear-gradient(
-    90deg,
-    rgba(0, 181, 255, 1) 0%,
-    rgba(79, 165, 198, 1) 60%,
-    rgba(43, 115, 201, 1) 100%
-  );
+ background: rgb(0,181,255);
+background: linear-gradient(90deg, rgba(0,181,255,1) 0%, rgba(79,165,198,1) 80%, rgba(43,170,201,1) 100%);
   height: 15vh;
   display: flex;
   flex-direction: column;
@@ -48,8 +44,17 @@ html {
 }
 
 /*******NavBar */
+
+.navbar-container {
+background: linear-gradient(0deg, rgba(34,168,195,1) 0%, rgba(253,207,45,1) 100%);
+}
+
 .App-title.navbar-brand {
   font-size: 1.5rem;
+}
+
+.nav-links-container.navbar-nav {
+  flex-direction: row;
 }
 
 .nav-links {
@@ -75,9 +80,6 @@ html {
 }
 .coin-chart-container {
   margin-top: 1rem;
-}
-
-.coin-image-graph {
 }
 
 .button-graph-container {
@@ -154,9 +156,20 @@ html {
 
 /*******Images */
 
+.train {
+  transform: scale(-1, 1);
+  transform-origin: center;
+  height: 80px;
+  margin-left: auto;
+  margin-bottom: -4px;
+  margin-top: 5px;
+}
+
 .traintracks {
   height: 80px;
-  margin-right: -10px;
+    margin-right: -10px;
+    border-top: 5px solid white;
+    transform: skewX(10deg);
 }
 
 #traintrack-border {
@@ -171,7 +184,11 @@ html {
   overflow: auto;
 }
 
-.coin-table th {
+#crypto-list-title {
+  font-weight: 600;
+}
+
+#coin-table th {
   position: sticky;
   background: white;
   top: -5px;
@@ -179,7 +196,7 @@ html {
 }
 /******* */
 
-.coin-table {
+#coin-table {
   margin-left: auto;
   margin-right: auto;
   max-width: 700px;
@@ -204,6 +221,11 @@ html {
 
 .coin-container td {
   z-index: 1;
+  font-size: 20px;
+}
+
+.coin-container:first-child {
+  border-top: 4px solid #6329a2;
 }
 
 .coin-container {
@@ -213,6 +235,7 @@ html {
   margin-right: auto;
   margin-bottom: 1rem;
   font-weight: 600;
+  
 }
 
 .coin-container h3 {
@@ -227,11 +250,11 @@ html {
 }
 
 @media screen and (max-width: 900px) {
-  .coin-table th {
+  #coin-table th {
     font-size: 12px;
   }
   .coin-container td {
-    font-size: 12px;
+    font-size: 14px;
     padding-right: 10px;
   }
 
@@ -259,6 +282,14 @@ html {
 @media screen and (max-width: 575px) {
   .search-input {
     margin-bottom: 1rem;
+  }
+
+  .train, .traintracks {
+    height: 45px;
+  }
+
+  .train {
+    margin-bottom: -3px;
   }
 }
 

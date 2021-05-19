@@ -25,18 +25,22 @@ const NavBar = ({ history }) => {
 
   return (
     <Navbar
-      bg="primary"
+      className="navbar-container"
       variant="dark"
       style={{
         display: "flex",
         flexDirection: "row",
         flexWrap: "wrap",
         overflow: "hidden",
-      }}>
+      }}
+      expand="lg"
+      >
       <Navbar.Brand className="App-title" href="#">
         Crypto Tracks
       </Navbar.Brand>
-      <Nav style={{ verticalAlign: "middle" }} className="mr-auto">
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+  <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="mr-auto nav-links-container">
         <NavLink className="nav-links" onClick={handleReset} exact to="/">
           Home
         </NavLink>
@@ -58,6 +62,7 @@ const NavBar = ({ history }) => {
           Search
         </Button>
       </Form>
+      </Navbar.Collapse>
     </Navbar>
   );
 };

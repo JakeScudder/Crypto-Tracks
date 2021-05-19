@@ -7,6 +7,7 @@ import CryptoList from "./components/CryptoList";
 import SingleCoin from "./components/SingleCoin";
 import NavBar from "./components/NavBar";
 import TrainBorder from "./components/TrainBorder";
+import Train from "./components/Train";
 import CoinHistory7Days from "./components/CoinHistory7Days";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <NavBar />
+        <Train />
         <TrainBorder />
         <Switch>
           <Route path="/home" component={CryptoList} />

@@ -222,6 +222,10 @@ const CoinHistory7Days = ({ match }) => {
     let url5;
     let url6;
 
+    let config = {
+      headers: {'Access-Control-Allow-Origin': '*'}
+    }
+
     if (dates && dates[0]) {
       url0 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[0]}`;
       url1 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[1]}`;
@@ -232,13 +236,13 @@ const CoinHistory7Days = ({ match }) => {
       url6 = `https://api.coingecko.com/api/v3/coins/${match.params.id}/history?date=${dates[6]}`;
     }
 
-    const promise0 = axios.get(url0);
-    const promise1 = axios.get(url1);
-    const promise2 = axios.get(url2);
-    const promise3 = axios.get(url3);
-    const promise4 = axios.get(url4);
-    const promise5 = axios.get(url5);
-    const promise6 = axios.get(url6);
+    const promise0 = axios.get(url0, config);
+    const promise1 = axios.get(url1, config);
+    const promise2 = axios.get(url2, config);
+    const promise3 = axios.get(url3, config);
+    const promise4 = axios.get(url4, config);
+    const promise5 = axios.get(url5, config);
+    const promise6 = axios.get(url6, config);
 
     //Promise.all is sorted by Most Recent Day first
     Promise.all([
@@ -333,6 +337,7 @@ const CoinHistory7Days = ({ match }) => {
           <Loader />
         ) : chartData.length > 0 ? (
           <>
+            {/* Pass fetch data to Chart and Chart Info Components */}
             <Chart data={chartData} yValues={YRange} />
             <ChartInfo data={chartData} />
           </>

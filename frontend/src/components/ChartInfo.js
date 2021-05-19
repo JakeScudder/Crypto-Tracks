@@ -17,8 +17,9 @@ const ChartInfo = ({ data }) => {
         {data.map((xy) => (
           <Row className="chart-info-data-point" key={xy.x}>
             <Col className="xypoint">{xy.x}</Col>
+            {/* Format chart data based on size of number */}
             <Col className="xypoint">
-              ${xy.y <= 0.5 ? xy.y.toFixed(4) : formatNumber(xy.y.toFixed(2))}
+              ${xy.y <= 0.01 ? xy.y.toFixed(8) : xy.y <= 0.5 ? xy.y.toFixed(4) : formatNumber(xy.y.toFixed(2))}
             </Col>
           </Row>
         ))}
