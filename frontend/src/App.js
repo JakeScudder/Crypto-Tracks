@@ -4,6 +4,7 @@ import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import "./yeti.bootstrap.min.css";
 
+//Components
 import CryptoList from "./components/CryptoList";
 import SingleCoin from "./components/SingleCoin";
 import NavBar from "./components/NavBar";

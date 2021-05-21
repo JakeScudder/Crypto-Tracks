@@ -278,6 +278,43 @@ html {
   padding-right: 17px !important;
 }
 
+/* Footer */
+
+#footer {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 181, 255, 1) 0%,
+    rgba(79, 165, 198, 1) 80%,
+    rgba(43, 170, 201, 1) 100%
+  );
+  border-top: 4px solid black;
+  padding: 5px 0;
+}
+
+.footer-row {
+  justify-content: center;
+}
+
+/* Widescreen */
+@media screen and (min-width: 1400px) {
+  .dataTables_length {
+    float: none !important;
+  }
+  .dataTables_filter {
+    float: none !important;
+    text-align: center !important;
+  }
+
+  .dataTables_info {
+    float: none !important;
+  }
+  .dataTables_paginate {
+    float: none !important;
+    text-align: center !important;
+    padding-bottom: 2rem;
+  }
+}
+
 @media screen and (max-width: 900px) {
   #coin-table th {
     font-size: 12px;
