@@ -22,7 +22,7 @@ const NavBar = ({ history }) => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto nav-links-container">
-          <a className="nav-links" href="/">
+          <a className="nav-links" href="/Crypto-Tracks">
             Home
           </a>
           <a className="nav-links" href="https://github.com/JakeScudder">
